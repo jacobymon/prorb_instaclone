@@ -10,7 +10,9 @@ class User < ApplicationRecord
 
   validates :username, presence: true
 
-  def like!(post)
-    likes << Like.new(post: post)
+  def like!(likeable)
+    unless likes.exists?(likeable: likeable)  
+      likes << Like.new(likeable: likeable)
+    end
   end
 end

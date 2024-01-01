@@ -5,7 +5,12 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @post = current_user.posts.find_by(id: params[:post_id])
-    current_user.likes.where(post_id: @post.id).delete_all
+    # @post = current_user.posts.find_by(id: params[:post_id])
+    @post = Post.find(params[:post_id])
+
+
+    # current_user.likes.where(post_id: @post.id).delete_all
+    current_user.likes.where(likeable: @post).delete_all
+    current_user.reload
   end
 end
