@@ -12,7 +12,9 @@ class User < ApplicationRecord
 
   def like!(likeable)
     unless likes.exists?(likeable: likeable)  
-      likes << Like.new(likeable: likeable)
+      # likes << Like.new(likeable: likeable)
+      post.likes << Like.new(user: self)
+
     end
   end
 end

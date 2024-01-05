@@ -1,16 +1,23 @@
 class LikesController < ApplicationController
   def create
-    @post = Post.find(params[:post_id])
-    current_user.like!(@post)
+    @likeable = find_likeable
+    @like = @likeable.likes.build(user: current_user)
+    @like.save
   end
 
   def destroy
-    # @post = current_user.posts.find_by(id: params[:post_id])
-    @post = Post.find(params[:post_id])
+    @likeable = find_likeable
+    @like = @likeable.likes.find_by(user: current_user)
 
+    if @like
+      @like.destroy
+    end
+  end  
 
-    # current_user.likes.where(post_id: @post.id).delete_all
-    current_user.likes.where(likeable: @post).delete_all
-    current_user.reload
+  private
+  def find_likeable
+    likeable_type = params[:likeable_type]
+    likeable_id = params[:likeable_id]
+    likeable_type.constantize.find(likeable_id)
   end
 end

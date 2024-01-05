@@ -14,7 +14,7 @@
  *= require_self
  */
 
-body {
+ body {
   width: 960px;
   margin: 10px auto;
 }
@@ -22,7 +22,6 @@ body {
 .nav {
   text-align: right;
 }
-
 
 /* Post */
 
@@ -33,7 +32,10 @@ body {
   font-family: Verdana, Arial, Tahoma, Serif;
 }
 
-.post-author, .post-body, .post-actions, .post-comments {
+.post-author,
+.post-body,
+.post-actions,
+.post-comments {
   padding: 5px;
 }
 
@@ -96,18 +98,23 @@ body {
   color: #222;
 }
 
-.post-actions-like, .post-actions-unlike {
+.post-actions-like,
+.post-actions-unlike,
+.comment-actions-like,
+.comment-actions-unlike {
   width: 24px;
   height: 24px;
 }
 
-.post-actions-like {
+.post-actions-like,
+.comment-actions-like {
   background: url('like.png');
   background-size: contain;
   display: block;
 }
 
-.post-actions-unlike {
+.post-actions-unlike,
+.comment-actions-unlike {
   background: url('liked.png');
   background-size: contain;
   display: block;
@@ -130,8 +137,19 @@ body {
   font-size: 11px;
 }
 
+.comment {
+  display: flex;
+}
+
 .comment-author {
   font-weight: bold;
+}
+
+.comment-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 button {
